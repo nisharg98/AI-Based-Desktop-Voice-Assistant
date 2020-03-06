@@ -1,0 +1,33 @@
+
+Hello  Nisharg Prajapati, good morning
+I am assistant how may i help you
+Say Something
+you said:how are you
+I am fine
+
+Hello  Nisharg Prajapati, good morning
+I am assistant how may i help you
+Say Something
+you said:what is time now
+the date is 03/06/20 and the time is 00:36:14
+
+Hello  Nisharg Prajapati, good morning
+I am assistant how may i help you
+Say Something
+you said:what's the weather today
+provide city name
+Say Something
+you said:Ahmedabad
+current temperature is 22.0 celsius
+current humidity is 78%
+current weather description is haze
+
+Hello  Nisharg Prajapati, good morning
+I am assistant how may i help you
+Say Something
+you said:search on Wikipedia
+what do you want to search in wikipedia
+Say Something
+you said:artificial intelligence
+according to wikipedia
+In computer science, artificial intelligence (AI), sometimes called machine intelligence, is intelligence demonstrated by machines, in contrast to the natural intelligence displayed by humans and animals. Leading AI textbooks define the field as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.
