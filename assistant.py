@@ -8,6 +8,8 @@ import webbrowser
 import wikipedia
 import random
 import smtplib, ssl
+from email.mime.multipart import MIMEMultipart 
+from email.mime.text import MIMEText 
 import socket
 import wolframalpha
 import requests
@@ -132,6 +134,7 @@ def listen():
     with sr.Microphone() as source:
         speak("Say Something")
         #r.adjust_for_ambient_noise(source)
+        r.energy_threshold = 4000
         audio = r.listen(source)
     try:
         text = r.recognize_google(audio, language="en-in")
@@ -142,17 +145,26 @@ def listen():
         text = listen()
     return text
 
+temp = 0
+def temp_counter():
+    global temp
+    temp += 1
+
 # initialization
 def init():
     chk_internet()
-    hour = int(datetime.datetime.now().hour)    
-    if hour>=0  and hour<12:
-        speak("Hello "+user_name+", good morning")
-    if hour>=12  and hour<18:
-        speak("Hello "+user_name+", good afternoon")
-    elif hour>=18 and hour<=24:    
-        speak("Hello "+user_name+", good evening")
-    speak("I am assistant how may i help you")
+    hour = int(datetime.datetime.now().hour)
+    counter = temp
+    if counter == 0:
+        if hour>=0  and hour<12:
+            speak("Hello "+user_name+", good morning")
+        if hour>=12  and hour<18:
+            speak("Hello "+user_name+", good afternoon")
+        elif hour>=18 and hour<=24:    
+            speak("Hello "+user_name+", good evening")
+        speak("I am assistant how may i help you")
+        temp_counter()
+
     text = listen()
     textlow = text.lower()
     action(textlow)
@@ -170,19 +182,22 @@ def action(text):
         speak(tm) 
 
     elif "music" in text:
-        rno = random.randint(0,9)
-        mdir = "C:\\Users\\rohit\\Music"
+        #rno = random.randint(0,2)
+        mdir = "C:\\Users\\rohit\\desktop\\music"
         songs = os.listdir(mdir)
-        os.startfile(os.path.join(mdir, songs[rno]))
+        os.startfile(os.path.join(mdir, songs[0]))
 
     elif "mail" in text:
         speak("what's the message")
         message = listen()
+        msg = MIMEMultipart()
+        msg['Subject'] = "AI Based Desktop Voice Assistant Test Mail"
+        msg.attach(MIMEText(message, 'plain'))
         mail = smtplib.SMTP("smtp.gmail.com", 587)
         mail.ehlo()
         mail.starttls()
-        mail.login("sender_mail", "password")
-        mail.sendmail("sender_mail", "reciever_mail", message)
+        mail.login("nishargprajapati@gecg28.ac.in", "test@464")
+        mail.sendmail("nishargprajapati@gecg28.ac.in", "nishargprajapati98@gmail.com", msg.as_string())
         mail.close()
         speak("mail has been sent successfully")
 
@@ -362,7 +377,7 @@ def action(text):
 
     elif "exit" in text:
         speak("bye bye, have a nice day")
-        exit()
+        main.destroy()
     
     else:
         speak("no results found!")
