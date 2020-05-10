@@ -196,7 +196,7 @@ def action(text):
         mail = smtplib.SMTP("smtp.gmail.com", 587)
         mail.ehlo()
         mail.starttls()
-        mail.login("nishargprajapati@gecg28.ac.in", "test@464")
+        mail.login("nishargprajapati@gecg28.ac.in", "Write Your Password Here")
         mail.sendmail("nishargprajapati@gecg28.ac.in", "nishargprajapati98@gmail.com", msg.as_string())
         mail.close()
         speak("mail has been sent successfully")
